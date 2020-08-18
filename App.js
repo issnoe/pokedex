@@ -16,14 +16,13 @@ import {
   StatusBar,
 } from 'react-native';
 
-
+import Search from './src/screens/Search';
 const App: () => React$Node = () => {
   return (
     <>
+      <Search />
       <Text>Pokedex</Text>
     </>
   );
 };
-
-
 export default App;
