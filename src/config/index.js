@@ -1,4 +1,5 @@
 export const INIT_LIMIT = 100;
+export const INDEX_ID = 6;
 
 /**
  * Options sources
@@ -16,11 +17,4 @@ export const GET_EVOLUTION = 'pokemon-species';
 export const GET_EVOLUTION_CHAIN = 'evolution-chain';
 
 export const SECOND_COLOR = '#00ff00';
-
-/* List colors
-#95f8ad
-#f01c17
-#fccb05
-#3fecbb
-
-*/
+export const COLUMS_SEARCH = 3;
