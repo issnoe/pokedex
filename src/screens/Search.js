@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { INIT_LIMIT, COLUMS_SEARCH } from '../config';
 import PokemonService from '../services/Pokemon';
-import TransformHelper from '../libs/transform'
+import TransformHelper from '../libs/transform';
 import Busy from '../components/Busy';
 import PokemonCard from '../components/PokemonCard';
 
@@ -71,8 +71,8 @@ export default class Search extends Component {
     );
   };
 
-  goDetails = (params) => {
-    // this.props.navigation.navigate('Detalles', { ...params });
+  goPokedex = (params) => {
+    this.props.navigation.navigate('Pokedex', { ...params });
   }
 
   _renderFooter = () => {
@@ -95,7 +95,7 @@ export default class Search extends Component {
         initialNumToRender={INIT_LIMIT + INIT_LIMIT}
         ListFooterComponent={this._renderFooter}
         data={this.state.data}
-        renderItem={({ item }) => <PokemonCard {...item} id={TransformHelper.getId(item.url)} callback={this.goDetails} />}
+        renderItem={({ item }) => <PokemonCard {...item} id={TransformHelper.getId(item.url)} callback={this.goPokedex} />}
         onRefresh={this.refresh}
         refreshing={this.state.refreshing}
         onEndReached={this.loadBerofe}

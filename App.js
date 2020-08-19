@@ -15,14 +15,29 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
 import Search from './src/screens/Search';
+import Pokedex from './src/screens/Pokedex';
 const App: () => React$Node = () => {
   return (
     <>
-      <Search />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={Search}
+            options={{ title: 'Home' }}
+          />
+          <Stack.Screen name="Pokedex" component={Pokedex} />
+        </Stack.Navigator>
+      </NavigationContainer>
       <Text>Pokedex</Text>
     </>
+
   );
 };
 export default App;

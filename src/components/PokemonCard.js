@@ -7,10 +7,11 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { SECOND_COLOR, URL_IMAGES } from '../config';
 
+
 const sizeDimentions = {
   'large': {
-    width: 200,
-    height: 200,
+    width: 210,
+    height: 210,
   },
   small: {
     width: 100,
@@ -18,7 +19,7 @@ const sizeDimentions = {
   },
 };
 
-const Pokemon = ({ size = 'small', name = '', id = '25', callback }) => {
+export const Pokemon = ({ size = 'small', name = '', id = '25', callback }) => {
   return <TouchableOpacity onPress={() => {
     callback({ name, id });
   }} style={styles.pokemonContainer} >
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     elevation: 10,
     alignContent: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
