@@ -22,6 +22,7 @@ const Stack = createStackNavigator();
 
 import Search from './src/screens/Search';
 import Pokedex from './src/screens/Pokedex';
+import { ANIMATION_SETTING } from './src/config'
 const App: () => React$Node = () => {
   return (
     <>
@@ -32,10 +33,19 @@ const App: () => React$Node = () => {
             component={Search}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="Pokedex" component={Pokedex} options={({ route }) => ({ title: `#${route.params.id} ${route.params.name.toUpperCase()}` })} />
+          <Stack.Screen
+            name="Pokedex"
+            component={Pokedex}
+
+            options={({ route }) => ({
+              title: `#${route.params.id} ${route.params.name.toUpperCase()}`, transitionSpec: {
+                open: ANIMATION_SETTING,
+                close: ANIMATION_SETTING,
+              },
+            })}
+          />
         </Stack.Navigator>
       </NavigationContainer>
-      <Text>Pokedex</Text>
     </>
 
   );

@@ -14,3 +14,15 @@ export const GET_EVOLUTION_CHAIN = 'evolution-chain';
 
 export const SECOND_COLOR = '#00ff00';
 export const COLUMS_SEARCH = 3;
+
+export const ANIMATION_SETTING = {
+  animation: 'spring',
+  config: {
+    stiffness: 9000,
+    damping: 100,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.01,
+    restSpeedThreshold: 0.01,
+  },
+};

@@ -11,15 +11,16 @@ import Busy from '../components/Busy';
 import PokemonCard, { Pokemon } from '../components/PokemonCard';
 
 export default class Pokedex extends Component {
+
   state = {
     data: [],
     busy: true,
     error: null,
   };
-
   componentDidMount() {
     this.loadPokemon();
   }
+
 
   loadPokemon = async () => {
     const { route } = this.props;
@@ -32,8 +33,7 @@ export default class Pokedex extends Component {
   }
 
   goPokedex = (params) => {
-
-    this.props.navigation.navigate('Pokedex', { ...params });
+    this.props.navigation.replace('Pokedex', { ...params });
   }
 
   _renderChainEvolution = () => {
@@ -57,22 +57,27 @@ export default class Pokedex extends Component {
   };
 
   render() {
-    const { busy } = this.state;
-
+    const { busy, data } = this.state;
     return (<View style={styles.container}>
       <View style={styles.boxMainPokemon}>
         <Pokemon id={this.props.route.params.id} callback={() => { }} size={'large'} />
       </View>
-      <ScrollView style={styles.boxInformation}>
-        <View style={styles.boxEvolution}>
+      <Busy busy={busy} />
+      {busy === false && <ScrollView style={styles.boxInformation}>
+        {data && data.base && <View style={styles.boxDirectionRow}>
+          <Text style={styles.title}>Experiencia </Text>
+          <Text style={styles.levelExperience}>{data && data.base ? data.base.base_experience : ''} </Text>
+        </View>}
+        <View style={styles.boxDirectionRow}>
           {this._renderChainEvolution()}
         </View>
-        <View style={styles.boxAbilities}>
-          <Text>hi</Text>
-        </View>
-      </ScrollView>
+        {data && data.base && <ScrollView style={styles.boxDirectionColumn}>
+          <Text style={styles.title}>Consola de datos </Text>
+          <Text style={styles.boxConsole}>{JSON.stringify({ ...data.evolution, ...data.base }, null, 2)}</Text>
+        </ScrollView>}
+      </ScrollView>}
 
-      <Busy busy={busy} />
+
     </View >);
   }
 }
@@ -89,25 +94,36 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingLeft: 10,
   },
+  levelExperience: {
+    color: '#273339',
+    fontSize: 25,
+    fontFamily: 'serif',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    paddingLeft: 10,
+  },
   boxMainPokemon: {
-    flex: 0.4,
+    flex: 0.5,
     padding: 30,
     paddingTop: 40,
     alignContent: 'center',
     justifyContent: 'center',
   },
   boxInformation: {
-    flex: 0.6,
+    flex: 0.5,
+  },
+  boxDirectionRow: {
+    flex: 1,
     flexDirection: 'row',
-
+    paddingBottom: 20
   },
-  boxEvolution: {
+  boxDirectionColumn: {
     flex: 1,
+    flexDirection: 'column',
+    paddingBottom: 20
   },
-  boxAbilities: {
-    flex: 1,
-    alignContent: 'center',
-    justifyContent: 'center',
+  boxConsole: {
+    backgroundColor: 'white'
   },
 
 });
