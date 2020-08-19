@@ -30,9 +30,9 @@ const App: () => React$Node = () => {
           <Stack.Screen
             name="Home"
             component={Search}
-            options={{ title: 'Home' }}
+            options={{ headerShown: false }}
           />
-          <Stack.Screen name="Pokedex" component={Pokedex} />
+          <Stack.Screen name="Pokedex" component={Pokedex} options={({ route }) => ({ title: `#${route.params.id} ${route.params.name.toUpperCase()}` })} />
         </Stack.Navigator>
       </NavigationContainer>
       <Text>Pokedex</Text>
